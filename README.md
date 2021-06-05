@@ -7,12 +7,10 @@ npm install
 
 Generar el Dist
 ```
-
 tsc -w
 ```
 
 Levantar servidor
 ```
-
 nodemon/node dist/
 ```
