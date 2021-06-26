@@ -18,9 +18,16 @@ export class UsuariosLista {
 
     public actualizarNombre(id: string, nombre: string) {
 
+        console.log('la lista para actualizar', this.lista);
+        console.log('el id', id);
+        console.log('el nombre', nombre);
+
+
         for (let index = 0; index < this.lista.length; index++) {
             const usuario = this.lista[index];
             if (usuario.id === id) {
+                console.log('entro',id,nombre);
+                
                 usuario.nombre = nombre;
                 break;
             }
@@ -40,7 +47,9 @@ export class UsuariosLista {
     }
 
     public getLista() {
-        return this.lista;
+        console.log('lista::::', this.lista);
+
+        return this.lista.filter(usuario => usuario.nombre !== 'sin-nombre');
     }
 
     public getUsuario(id: string) {
