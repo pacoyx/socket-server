@@ -25,6 +25,8 @@ export class UsuariosLista {
 
         for (let index = 0; index < this.lista.length; index++) {
             const usuario = this.lista[index];
+            console.log('el usuario es:=:', usuario);
+            
             if (usuario.id === id) {
                 console.log('entro',id,nombre);
                 

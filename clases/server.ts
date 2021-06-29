@@ -34,6 +34,8 @@ export default class Server {
 
         this.io.on('connection', cliente => {
 
+            //configuracion de mapas
+            socket.mapaSockets(cliente, this.io);
 
             // Conectar cliente
             socket.conectarCliente(cliente, this.io);
@@ -41,8 +43,8 @@ export default class Server {
             //configurar Usuario
             socket.configurarUsuario(cliente, this.io);
 
-             // Obtener usuarios activos
-             socket.obtenerUsuarios(cliente, this.io);
+            // Obtener usuarios activos
+            socket.obtenerUsuarios(cliente, this.io);
 
             //Mensajes
             socket.mensaje(cliente, this.io);
@@ -53,7 +55,7 @@ export default class Server {
         });
     }
 
-    start(callback: any) {
+    start(callback: () => void) {
         this.httpServer.listen(this.port, callback);
     }
 
