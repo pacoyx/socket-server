@@ -4,10 +4,34 @@ import { UsuariosLista } from "../clases/usurios-lista";
 import { Usuario } from "../clases/Usuario";
 import { Mapa } from "../clases/mapa";
 import { Marcador } from "../clases/marcador";
+import { TicketLista } from "../clases/ticket-lista";
+import { Ticket } from "../clases/ticket";
 
 
 export const usuariosConectados = new UsuariosLista();
 export const mapa = new Mapa();
+export const ticketManager = new TicketLista();
+//eventos de Ticket
+
+export const ticketSocket = (cliente: Socket, io: socketIO.Server) => {
+
+    cliente.on('ticket-agregar', () => {
+
+        let objTicket = ticketManager.agregar();
+        cliente.emit('ticket-agregar', objTicket);
+
+    });
+
+    cliente.on('ticket-atender', (escritorio: number) => {
+
+        let objTicketEnAtencion = ticketManager.setEscritorio(escritorio);
+        io.emit('ticket-atender', ticketManager.getListaAtendidos());
+
+    });
+
+    
+}
+
 
 //Eventos de mapa
 export const mapaSockets = (cliente: Socket, io: socketIO.Server) => {
@@ -35,6 +59,7 @@ export const mapaSockets = (cliente: Socket, io: socketIO.Server) => {
 
 
 }
+
 
 
 

@@ -34,6 +34,9 @@ export default class Server {
 
         this.io.on('connection', cliente => {
 
+            //administrar Tickets
+            socket.ticketSocket(cliente, this.io);
+
             //configuracion de mapas
             socket.mapaSockets(cliente, this.io);
 
